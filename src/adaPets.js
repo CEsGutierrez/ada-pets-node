@@ -25,11 +25,9 @@ const showDetails = (selectedPet) => {
     return;
   }
 
-  const URL = BASE_URL + selectedPet
-  axios.get(URL)
+  axios.get(BASE_URL + selectedPet)
   
   .then((response)=> {
-    console.log(response)
     return setResult(response.data)
   })
   .catch((error)=> {
@@ -43,11 +41,25 @@ const removePet = (selectedPet) => {
     return;
   }
 
-  // Fill out as part of Wave 3.
+  axios.delete(BASE_URL + selectedPet)
+  .then((response)=> {
+    return setResult(response.data)
+  })
+  .catch((error) => {
+    return setError("failed to remove pet")
+  })
 }
 
 const addPet = (petInfo) => {
-  // Fill out as part of Wave 4.
+ 
+  axios.post(BASE_URL, petInfo)
+  .then((response)=> {
+    return setResult(response.data)
+  })
+  .catch((error) => {
+    return setError("failed to add pet")
+  })
+
 }
 
 // Use Node-style exports to export functions for tests and main.

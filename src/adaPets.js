@@ -11,29 +11,30 @@ const BASE_URL = "https://petdibs.herokuapp.com/pets/";
 const listPets = () => {
   axios.get(BASE_URL)
   .then((response) =>{
-    // console.log(response.data)
-    // console.log("Potatoes")
-    // return setResult()
       return setResult(response.data)
-    
   })
   .catch((error) => {
-    // console.log("Errors")
       return setError("IDK")
-    
-
   })
-
-
 }
 
 const showDetails = (selectedPet) => {
+
   if (!selectedPet) {
     setError("You tried to show details for a pet without selecting it!");
     return;
   }
 
-  // Fill out as part of Wave 2.
+  const URL = BASE_URL + selectedPet
+  axios.get(URL)
+  
+  .then((response)=> {
+    console.log(response)
+    return setResult(response.data)
+  })
+  .catch((error)=> {
+    return setError("failed to show details")
+  })
 }
 
 const removePet = (selectedPet) => {

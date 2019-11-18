@@ -2,14 +2,29 @@
 const axios = require('axios');
 const result = require('./result.js');
 
-const setResult = result.setResult;
-const setError = result.setError;
+let setResult = result.setResult;
+let setError = result.setError;
 
 const BASE_URL = "https://petdibs.herokuapp.com/pets/";
 
 // Option functions.
 const listPets = () => {
-  // Fill out as part of Wave 1.
+  axios.get(BASE_URL)
+  .then((response) =>{
+    // console.log(response.data)
+    // console.log("Potatoes")
+    // return setResult()
+      return setResult(response.data)
+    
+  })
+  .catch((error) => {
+    // console.log("Errors")
+      return setError("IDK")
+    
+
+  })
+
+
 }
 
 const showDetails = (selectedPet) => {
